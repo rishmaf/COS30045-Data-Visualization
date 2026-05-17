@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>COS30045 · Week 4 · Exercises 4.1–4.7</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-fixed">
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+</div>
+
+<!-- Header -->
+<header>
+  <span class="logo">&#x2B21; COS30045 / WEEK 4</span>
+  <span class="hdr-badge">Data Visualisation</span>
+</header>
+
+<!-- Tab bar -->
+<div class="tab-bar">
+  <nav>
+    <button class="tab-btn active" data-tab="ex41"><span class="tnum">4.1</span><span class="tsub">SVG Shapes</span></button>
+    <button class="tab-btn" data-tab="ex42"><span class="tnum">4.2</span><span class="tsub">D3 Manipulate</span></button>
+    <button class="tab-btn" data-tab="ex43"><span class="tnum">4.3</span><span class="tsub">D3 Setup</span></button>
+    <button class="tab-btn" data-tab="ex44"><span class="tnum">4.4</span><span class="tsub">Load Data</span></button>
+    <button class="tab-btn" data-tab="ex45"><span class="tnum">4.5</span><span class="tsub">Bind &amp; Draw</span></button>
+    <button class="tab-btn" data-tab="ex46"><span class="tnum">4.6</span><span class="tsub">Scaling</span></button>
+    <button class="tab-btn" data-tab="ex47"><span class="tnum">4.7</span><span class="tsub">Labels</span></button>
+  </nav>
+</div>
+
+<main>
+
+  <!-- ══ 4.1 SVG Shapes ══════════════════════════════════════════ -->
+  <div class="ex-panel active" id="ex41">
+    <div class="ex-intro">
+      <div class="ex-tag">Exercise 4.1</div>
+      <h2 class="ex-h2">SVG Shapes<br/><span>House &amp; Garden Scene</span></h2>
+      <p class="ex-aim">Become familiar with creating and formatting SVG primitives. Use all the different SVG shape types, understand the coordinate system, and apply grouping with &lt;g&gt; elements.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Create a Picture with SVG Shapes</span></div>
+      <p class="step-desc">Build a house and garden scene using every SVG primitive type: <code>rect</code>, <code>circle</code>, <code>polygon</code>, <code>line</code>, <code>polyline</code>, <code>ellipse</code>, <code>text</code>, and <code>path</code>.</p>
+    </div>
+
+    <div class="svg-section">
+      <div class="svg-label">LIVE SVG OUTPUT — House &amp; Garden Scene</div>
+      <svg viewBox="0 0 900 520" style="width:100%;display:block;" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="skyG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#07101e"/>
+            <stop offset="55%" stop-color="#0f1e36"/>
+            <stop offset="100%" stop-color="#182e20"/>
+          </linearGradient>
+          <linearGradient id="groundG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#2d4e2d"/>
+            <stop offset="100%" stop-color="#142014"/>
+          </linearGradient>
+          <linearGradient id="wallG" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%" stop-color="#2a3a58"/>
+            <stop offset="100%" stop-color="#344868"/>
+          </linearGradient>
+          <linearGradient id="roofG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#52321e"/>
+            <stop offset="100%" stop-color="#2c1a0c"/>
+          </linearGradient>
+          <linearGradient id="doorG" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#6b3d18"/>
+            <stop offset="100%" stop-color="#3a1e08"/>
+          </linearGradient>
+          <radialGradient id="moonG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#eee8d0"/>
+            <stop offset="55%" stop-color="#d8cc8a"/>
+            <stop offset="100%" stop-color="#d8cc8a" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="winG" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#fff9e0" stop-opacity="0.95"/>
+            <stop offset="100%" stop-color="#f6c90e" stop-opacity="0.15"/>
+          </radialGradient>
+          <radialGradient id="shadowG" cx="50%" cy="30%" r="50%">
+            <stop offset="0%" stop-color="#000" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="smokeBlur"><feGaussianBlur stdDeviation="2.5"/></filter>
+        </defs>
+
+        <!-- Sky — rect -->
+        <rect x="0" y="0" width="900" height="520" fill="url(#skyG)"/>
+
+        <!-- Stars — circles -->
+        <circle cx="45"  cy="28"  r="1.2" fill="white" opacity="0.65"/>
+        <circle cx="115" cy="14"  r="1.5" fill="white" opacity="0.75"/>
+        <circle cx="195" cy="42"  r="1.0" fill="white" opacity="0.5"/>
+        <circle cx="305" cy="18"  r="1.5" fill="white" opacity="0.8"/>
+        <circle cx="418" cy="9"   r="1.0" fill="white" opacity="0.6"/>
+        <circle cx="498" cy="33"  r="1.2" fill="white" opacity="0.55"/>
+        <circle cx="585" cy="16"  r="1.5" fill="white" opacity="0.7"/>
+        <circle cx="665" cy="40"  r="1.0" fill="white" opacity="0.6"/>
+        <circle cx="748" cy="11"  r="1.0" fill="white" opacity="0.8"/>
+        <circle cx="818" cy="26"  r="1.5" fill="white" opacity="0.5"/>
+        <circle cx="75"  cy="78"  r="1.0" fill="white" opacity="0.45"/>
+        <circle cx="168" cy="62"  r="1.0" fill="white" opacity="0.6"/>
+        <circle cx="258" cy="85"  r="1.5" fill="white" opacity="0.5"/>
+        <circle cx="348" cy="52"  r="1.0" fill="white" opacity="0.7"/>
+        <circle cx="545" cy="57"  r="1.0" fill="white" opacity="0.5"/>
+        <circle cx="638" cy="82"  r="1.5" fill="white" opacity="0.6"/>
+        <circle cx="855" cy="38"  r="1.0" fill="white" opacity="0.7"/>
+
+        <!-- Moon — circles -->
+        <circle cx="762" cy="72" r="38" fill="url(#moonG)" opacity="0.95"/>
+        <circle cx="750" cy="65" r="32" fill="#0f1e36"/>
+
+        <!-- Clouds — ellipses -->
+        <g opacity="0.7">
+          <ellipse cx="158" cy="88" rx="68" ry="23" fill="#182e50"/>
+          <ellipse cx="116" cy="82" rx="42" ry="19" fill="#1c3460"/>
+          <ellipse cx="198" cy="86" rx="46" ry="17" fill="#172c4c"/>
+        </g>
+        <g opacity="0.5">
+          <ellipse cx="538" cy="58" rx="56" ry="19" fill="#162a48"/>
+          <ellipse cx="506" cy="54" rx="33" ry="15" fill="#1a3050"/>
+          <ellipse cx="568" cy="56" rx="40" ry="15" fill="#182c4c"/>
+        </g>
+
+        <!-- Ground — rect -->
+        <rect x="0" y="375" width="900" height="145" fill="url(#groundG)"/>
+
+        <!-- Grass edge — path -->
+        <path d="M 0 375 Q 120 365 240 375 Q 360 366 480 375 Q 600 364 720 375 Q 820 366 900 375"
+              fill="none" stroke="#3a6a3a" stroke-width="3" opacity="0.55"/>
+
+        <!-- House shadow — ellipse -->
+        <ellipse cx="450" cy="382" rx="190" ry="14" fill="url(#shadowG)"/>
+
+        <!-- House walls — rect -->
+        <rect x="260" y="218" width="380" height="178" fill="url(#wallG)" rx="2"/>
+
+        <!-- Roof — polygon -->
+        <polygon points="232,218 450,88 668,218" fill="url(#roofG)"/>
+
+        <!-- Roof outline — polyline -->
+        <polyline points="232,218 450,88 668,218"
+                  fill="none" stroke="#6e3e20" stroke-width="2.5" opacity="0.9"/>
+
+        <!-- Chimney — rect -->
+        <rect x="558" y="112" width="38" height="76" fill="#3e2510" rx="2"/>
+        <rect x="552" y="108" width="50" height="12" fill="#4e3018" rx="2"/>
+
+        <!-- Smoke — path curves -->
+        <path d="M 568 104 C 560 86 574 70 562 52"
+              fill="none" stroke="#aaaabc" stroke-width="6" stroke-linecap="round"
+              opacity="0.3" filter="url(#smokeBlur)"/>
+        <path d="M 582 101 C 590 82 576 65 584 46"
+              fill="none" stroke="#bbbbcc" stroke-width="4.5" stroke-linecap="round"
+              opacity="0.2" filter="url(#smokeBlur)"/>
+
+        <!-- Windows — group <g> -->
+        <g>
+          <!-- Left window -->
+          <rect x="286" y="248" width="82" height="66" rx="4" fill="#080f1e" stroke="#3e5070" stroke-width="2.5"/>
+          <rect x="289" y="251" width="76" height="60" rx="3" fill="url(#winG)" opacity="0.85"/>
+          <line x1="327" y1="251" x2="327" y2="311" stroke="#3e5070" stroke-width="2.5"/>
+          <line x1="289" y1="281" x2="365" y2="281" stroke="#3e5070" stroke-width="2.5"/>
+          <rect x="282" y="314" width="90" height="6" rx="2" fill="#3e5070" opacity="0.6"/>
+          <!-- Right window -->
+          <rect x="532" y="248" width="82" height="66" rx="4" fill="#080f1e" stroke="#3e5070" stroke-width="2.5"/>
+          <rect x="535" y="251" width="76" height="60" rx="3" fill="url(#winG)" opacity="0.85"/>
+          <line x1="573" y1="251" x2="573" y2="311" stroke="#3e5070" stroke-width="2.5"/>
+          <line x1="535" y1="281" x2="611" y2="281" stroke="#3e5070" stroke-width="2.5"/>
+          <rect x="528" y="314" width="90" height="6" rx="2" fill="#3e5070" opacity="0.6"/>
+        </g>
+
+        <!-- Door — rect + arch path -->
+        <rect x="392" y="306" width="116" height="90" rx="3" fill="url(#doorG)" stroke="#6e3e18" stroke-width="2.5"/>
+        <path d="M 393 318 Q 450 282 507 318" fill="#3a1e08" stroke="#6e3e18" stroke-width="2.5"/>
+        <rect x="400" y="322" width="48" height="34" rx="2" fill="#2e1806" stroke="#5a3010" stroke-width="1" opacity="0.75"/>
+        <rect x="452" y="322" width="48" height="34" rx="2" fill="#2e1806" stroke="#5a3010" stroke-width="1" opacity="0.75"/>
+        <rect x="400" y="360" width="48" height="30" rx="2" fill="#2e1806" stroke="#5a3010" stroke-width="1" opacity="0.75"/>
+        <rect x="452" y="360" width="48" height="30" rx="2" fill="#2e1806" stroke="#5a3010" stroke-width="1" opacity="0.75"/>
+        <rect x="382" y="395" width="136" height="8" rx="2" fill="#1e3a1e" opacity="0.8"/>
+        <!-- Doorknob — circle -->
+        <circle cx="499" cy="350" r="5.5" fill="#c8a030"/>
+        <circle cx="499" cy="350" r="3.5" fill="#e0be50"/>
+
+        <!-- Left tree — rect trunk + polygon foliage layers -->
+        <rect x="148" y="282" width="18" height="96" fill="#3a2010" rx="3"/>
+        <polygon points="98,282 157,145 216,282" fill="#1a4820"/>
+        <polygon points="106,246 157,126 208,246" fill="#1e5226"/>
+        <polygon points="115,218 157,114 199,218" fill="#1e4c22"/>
+
+        <!-- Right tree — rect + polygon -->
+        <rect x="724" y="294" width="16" height="84" fill="#3a2010" rx="3"/>
+        <polygon points="680,294 732,160 784,294" fill="#1a4820"/>
+        <polygon points="688,258 732,142 776,258" fill="#1e5226"/>
+        <polygon points="697,230 732,130 767,230" fill="#1e4c22"/>
+
+        <!-- Left bushes — ellipses -->
+        <ellipse cx="194" cy="372" rx="46" ry="26" fill="#1c4820"/>
+        <ellipse cx="222" cy="366" rx="36" ry="22" fill="#204e24"/>
+        <ellipse cx="166" cy="369" rx="30" ry="20" fill="#1a4220"/>
+
+        <!-- Right bushes — ellipses -->
+        <ellipse cx="688" cy="372" rx="50" ry="27" fill="#1c4820"/>
+        <ellipse cx="724" cy="366" rx="40" ry="23" fill="#204e24"/>
+        <ellipse cx="658" cy="369" rx="34" ry="22" fill="#1a4220"/>
+
+        <!-- Fence — line elements -->
+        <line x1="220" y1="332" x2="258" y2="332" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="220" y1="352" x2="258" y2="352" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="222" y1="322" x2="222" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="234" y1="322" x2="234" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="246" y1="322" x2="246" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="258" y1="322" x2="258" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="642" y1="332" x2="680" y2="332" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="642" y1="352" x2="680" y2="352" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="642" y1="322" x2="642" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="654" y1="322" x2="654" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="666" y1="322" x2="666" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+        <line x1="678" y1="322" x2="678" y2="362" stroke="#7a6a46" stroke-width="2.5" stroke-linecap="round"/>
+
+      </svg>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Understand the SVG Coordinate System</span></div>
+      <p class="step-desc">SVG uses a top-left origin <code>(0, 0)</code>. The x-axis increases rightward and the y-axis increases downward. All shape positions are relative to this origin.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Customise Your Picture</span></div>
+      <p class="step-desc">Move shapes by changing <code>x</code>, <code>y</code>, <code>cx</code>, <code>cy</code>. Change <code>fill</code> and <code>stroke</code> colours. Adjust <code>opacity</code> for depth.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 4</span><span class="step-title">Group Elements with &lt;g&gt;</span></div>
+      <p class="step-desc">Both windows are wrapped in a <code>&lt;g&gt;</code> group so transforms and styles can be applied to all children at once.</p>
+      <pre><span class="cm">&lt;!-- both windows share styles from &lt;g&gt; --&gt;</span>
+<span class="kw">&lt;g&gt;</span>
+  <span class="kw">&lt;rect</span> <span class="fn">x</span>=<span class="str">"286"</span> <span class="fn">y</span>=<span class="str">"248"</span> <span class="fn">width</span>=<span class="str">"82"</span> <span class="fn">height</span>=<span class="str">"66"</span><span class="kw">/&gt;</span>
+  <span class="kw">&lt;rect</span> <span class="fn">x</span>=<span class="str">"532"</span> <span class="fn">y</span>=<span class="str">"248"</span> <span class="fn">width</span>=<span class="str">"82"</span> <span class="fn">height</span>=<span class="str">"66"</span><span class="kw">/&gt;</span>
+<span class="kw">&lt;/g&gt;</span></pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 5</span><span class="step-title">View the DOM in Developer Tools</span></div>
+      <p class="step-desc">Open DevTools (F12) → Elements tab. Each SVG element appears as a node in the DOM tree matching exactly the shapes visible in the canvas.</p>
+    </div>
+  </div>
+
+  <!-- ══ 4.2 D3 Manipulation ════════════════════════════════════ -->
+  <div class="ex-panel" id="ex42">
+    <div class="ex-intro">
+      <div class="ex-tag">Exercise 4.2</div>
+      <h2 class="ex-h2">D3 Manipulation<br/><span>Select, Style &amp; Append</span></h2>
+      <p class="ex-aim">Become familiar with using D3 to change appearance and add elements to your webpage. Select existing elements, modify their styles, and append new DOM elements.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Add a D3 Script File</span></div>
+      <p class="step-desc">Create a new JS file and link it after the D3 library tag. Do not mix D3 code into existing JS files.</p>
+      <pre><span class="cm">&lt;!-- in index.html --&gt;</span>
+<span class="kw">&lt;script</span> <span class="fn">src</span>=<span class="str">"https://d3js.org/d3.v7.min.js"</span><span class="kw">&gt;&lt;/script&gt;</span>
+<span class="kw">&lt;script</span> <span class="fn">src</span>=<span class="str">"script.js"</span><span class="kw">&gt;&lt;/script&gt;</span></pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Apply Style to an HTML Element Using D3</span></div>
+      <p class="step-desc">D3 has changed the colour of the heading below at runtime:</p>
+      <h3 id="d3-h3-demo" style="margin-bottom:.75rem;font-size:1.1rem">Energy Consumption Website</h3>
+      <pre><span class="kw">d3</span>.<span class="fn">select</span>(<span class="str">"#d3-h3-demo"</span>)
+  .<span class="fn">style</span>(<span class="str">"color"</span>, <span class="str">"#c8f060"</span>);</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Append an Element Using D3</span></div>
+      <p class="step-desc">D3 appends a <code>&lt;p&gt;</code> element into the div below at page load:</p>
+      <div class="d3-demo-div" id="d3-append-div">
+        <span class="placeholder">&lt;div&gt; — D3 appends a &lt;p&gt; here</span>
+      </div>
+      <pre><span class="kw">d3</span>.<span class="fn">select</span>(<span class="str">"#d3-append-div"</span>)
+  .<span class="fn">append</span>(<span class="str">"p"</span>)
+    .<span class="fn">text</span>(<span class="str">"Purchasing a low energy consumption TV will help with your energy bills!"</span>);</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 4</span><span class="step-title">Append an SVG Rectangle Using D3</span></div>
+      <p class="step-desc">D3 appended the lime rectangle below via <code>.attr()</code> chain calls:</p>
+      <div class="svg-section" style="margin-bottom:.75rem">
+        <svg id="d3-manipulate-svg" width="100%" height="100" viewBox="0 0 400 100"></svg>
+      </div>
+      <pre><span class="kw">d3</span>.<span class="fn">select</span>(<span class="str">"svg"</span>)
+  .<span class="fn">append</span>(<span class="str">"rect"</span>)
+    .<span class="fn">attr</span>(<span class="str">"x"</span>, <span class="num">50</span>)  .<span class="fn">attr</span>(<span class="str">"y"</span>, <span class="num">25</span>)
+    .<span class="fn">attr</span>(<span class="str">"width"</span>, <span class="num">180</span>)  .<span class="fn">attr</span>(<span class="str">"height"</span>, <span class="num">50</span>)
+    .<span class="fn">style</span>(<span class="str">"fill"</span>, <span class="str">"#c8f060"</span>);</pre>
+    </div>
+  </div>
+
+  <!-- ══ 4.3 D3 Setup ════════════════════════════════════════════ -->
+  <div class="ex-panel" id="ex43">
+    <div class="ex-intro">
+      <div class="ex-tag">Exercise 4.3</div>
+      <h2 class="ex-h2">D3 Setup<br/><span>SVG Canvas &amp; Test Rect</span></h2>
+      <p class="ex-aim">Set up the D3 scaffolding — a responsive SVG container with a viewBox, and a hard-coded test rectangle to confirm D3 is working before adding data-driven bars.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Clean Slate — Remove Old D3 Code</span></div>
+      <p class="step-desc">Delete any D3 code from Exercise 4.2 except the D3 library <code>&lt;script&gt;</code> tag.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Responsive SVG Container — CSS + HTML</span></div>
+      <div class="grid2">
+        <div>
+          <p class="file-lbl">style.css</p>
+          <pre><span class="fn">.responsive-svg-container</span> {
+    margin: <span class="num">auto</span>;
+    width: <span class="num">100%</span>;
+    max-width: <span class="num">1200px</span>;
+}</pre>
+        </div>
+        <div>
+          <p class="file-lbl">index.html</p>
+          <pre><span class="kw">&lt;div</span> <span class="fn">class</span>=<span class="str">"responsive-svg-container"</span><span class="kw">&gt;
+&lt;/div&gt;</span></pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Create SVG Object with viewBox</span></div>
+      <pre><span class="kw">const</span> svg = d3.<span class="fn">select</span>(<span class="str">".responsive-svg-container"</span>)
+    .<span class="fn">append</span>(<span class="str">"svg"</span>)
+      .<span class="fn">attr</span>(<span class="str">"viewBox"</span>, <span class="str">"0 0 1200 600"</span>);</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 4</span><span class="step-title">Append a Test SVG Rectangle</span></div>
+      <pre>svg.<span class="fn">append</span>(<span class="str">"rect"</span>)
+    .<span class="fn">attr</span>(<span class="str">"x"</span>, <span class="num">10</span>)  .<span class="fn">attr</span>(<span class="str">"y"</span>, <span class="num">10</span>)
+    .<span class="fn">attr</span>(<span class="str">"width"</span>, <span class="num">414</span>)  .<span class="fn">attr</span>(<span class="str">"height"</span>, <span class="num">16</span>)
+    .<span class="fn">attr</span>(<span class="str">"fill"</span>, <span class="str">"#c8f060"</span>);</pre>
+    </div>
+
+    <div class="svg-section">
+      <div class="svg-label">LIVE D3 OUTPUT</div>
+      <div class="responsive-svg-container" id="ex43-container"></div>
+    </div>
+
+    <div class="step-card dom-block">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num dom-num">DOM</span><span class="step-title">What the Browser Developer Tools Show</span></div>
+      <div class="dom-view">
+        <span class="dt">&lt;div</span> <span class="da">class</span>=<span class="dv">"responsive-svg-container"</span><span class="dt">&gt;</span><br/>
+        <div class="di"><span class="dt">&lt;svg</span> <span class="da">viewBox</span>=<span class="dv">"0 0 1200 600"</span><span class="dt">&gt;</span><br/>
+        <div class="di"><span class="dt">&lt;rect</span> <span class="da">x</span>=<span class="dv">"10"</span> <span class="da">y</span>=<span class="dv">"10"</span> <span class="da">width</span>=<span class="dv">"414"</span> <span class="da">fill</span>=<span class="dv">"#c8f060"</span><span class="dt">/&gt;</span></div>
+        <span class="dt">&lt;/svg&gt;</span></div>
+        <span class="dt">&lt;/div&gt;</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ 4.4 Load Data ══════════════════════════════════════════ -->
+  <div class="ex-panel" id="ex44">
+    <div class="ex-intro">
+      <div class="ex-tag">Exercise 4.4</div>
+      <h2 class="ex-h2">Load CSV Data<br/><span>d3.csv() &amp; Formatting</span></h2>
+      <p class="ex-aim">Learn how to load and format CSV data so it is ready for D3. Use d3.csv() with a row conversion function to ensure numeric data is typed correctly, then find key statistics.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">PREP</span><span class="step-title">Set Up a Data Folder</span></div>
+      <p class="step-desc">Create a <code>data/</code> folder and place your summary CSV inside. The file <code>tvScreenTechCount.csv</code> is included in this zip.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Load CSV with d3.csv()</span></div>
+      <pre>d3.<span class="fn">csv</span>(<span class="str">"data/tvScreenTechCount.csv"</span>, d => ({
+  screen_tech: d.Screen_Tech,
+  count: <span class="num">+</span>d[<span class="str">"Count(Brand)"</span>]  <span class="cm">// coerce to number</span>
+}));</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Inspect Data in the Console</span></div>
+      <div id="ex44-table-wrap" style="margin-top:.75rem"></div>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Find Key Statistics</span></div>
+      <pre>.<span class="fn">then</span>(data => {
+  console.<span class="fn">log</span>(data.<span class="fn">length</span>);
+  console.<span class="fn">log</span>(d3.<span class="fn">max</span>(data, d => d.count));
+  console.<span class="fn">log</span>(d3.<span class="fn">extent</span>(data, d => d.count));
+});</pre>
+      <div id="ex44-stats" class="stats-grid" style="display:none"></div>
+    </div>
+  </div>
+
+  <!-- ══ 4.5 Bind & Draw ════════════════════════════════════════ -->
+  <div class="ex-panel" id="ex45">
+    <div class="ex-intro">
+      <div class="ex-tag">Exercise 4.5</div>
+      <h2 class="ex-h2">Bind &amp; Draw with Data<br/><span>selectAll · data · join</span></h2>
+      <p class="ex-aim">Bind the loaded CSV data to SVG rectangles using D3's data join pattern. Use data values to set bar widths and position bars vertically — no scaling yet, raw pixel values.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Bind Data to DOM Elements</span></div>
+      <pre><span class="kw">const</span> createBarChart = data => {
+  svg.<span class="fn">selectAll</span>(<span class="str">"rect"</span>)
+     .<span class="fn">data</span>(data)
+     .<span class="fn">join</span>(<span class="str">"rect"</span>);
+};</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Set Width &amp; Height Attributes</span></div>
+      <pre>.<span class="fn">attr</span>(<span class="str">"width"</span>, d => d.count / <span class="num">4</span>)
+.<span class="fn">attr</span>(<span class="str">"height"</span>, <span class="num">36</span>)
+.<span class="fn">attr</span>(<span class="str">"fill"</span>, <span class="str">"#c8f060"</span>);</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Space Out the Bars</span></div>
+      <pre>.<span class="fn">attr</span>(<span class="str">"x"</span>, <span class="num">0</span>)
+.<span class="fn">attr</span>(<span class="str">"y"</span>, (d, i) => i * (<span class="num">36</span> + <span class="num">10</span>));</pre>
+    </div>
+
+    <div class="svg-section">
+      <div class="svg-label">LIVE D3 OUTPUT — raw pixel widths, no scaling yet</div>
+      <div class="responsive-svg-container" id="ex45-container"></div>
+    </div>
+  </div>
+
+  <!-- ══ 4.6 Scaling ════════════════════════════════════════════ -->
+  <div class="ex-panel" id="ex46">
+    <div class="ex-intro">
+      <div class="ex-tag">Exercise 4.6</div>
+      <h2 class="ex-h2">Scaling Charts<br/><span>scaleLinear · scaleBand</span></h2>
+      <p class="ex-aim">Make the chart adaptable to any SVG size. d3.scaleLinear() maps count values to pixel widths; d3.scaleBand() distributes categories evenly across the height with padding.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Add a Linear Scale for Count Data (xScale)</span></div>
+      <pre><span class="kw">const</span> xScale = d3.<span class="fn">scaleLinear</span>()
+  .<span class="fn">domain</span>([<span class="num">0</span>, d3.<span class="fn">max</span>(data, d => d.count)])
+  .<span class="fn">range</span>([<span class="num">0</span>, innerWidth]);
+
+.<span class="fn">attr</span>(<span class="str">"width"</span>, d => <span class="fn">xScale</span>(d.count))</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Add a Band Scale for Categories (yScale)</span></div>
+      <pre><span class="kw">const</span> yScale = d3.<span class="fn">scaleBand</span>()
+  .<span class="fn">domain</span>(data.<span class="fn">map</span>(d => d.screen_tech))
+  .<span class="fn">range</span>([<span class="num">0</span>, innerHeight])
+  .<span class="fn">padding</span>(<span class="num">0.3</span>);</pre>
+    </div>
+
+    <div class="svg-section">
+      <div class="svg-label">LIVE D3 OUTPUT — scaled with scaleLinear + scaleBand</div>
+      <div class="responsive-svg-container" id="ex46-container"></div>
+    </div>
+  </div>
+
+  <!-- ══ 4.7 Labels ════════════════════════════════════════════ -->
+  <div class="ex-panel" id="ex47">
+    <div class="ex-intro">
+      <div class="ex-tag">Exercise 4.7</div>
+      <h2 class="ex-h2">Adding Labels<br/><span>Groups, Category &amp; Value Labels</span></h2>
+      <p class="ex-aim">Group bars and labels together with &lt;g&gt; + transform/translate so they move as one unit. Add category names on the left and count values to the right of each bar.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Comment Out Rectangle Attributes</span></div>
+      <p class="step-desc">Temporarily comment out the rectangle's <code>.attr()</code> calls — you will re-add them inside a group.</p>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Add a Group Container (barAndLabel)</span></div>
+      <pre><span class="kw">const</span> barAndLabel = svg
+  .<span class="fn">selectAll</span>(<span class="str">"g"</span>).<span class="fn">data</span>(data).<span class="fn">join</span>(<span class="str">"g"</span>)
+  .<span class="fn">attr</span>(<span class="str">"transform"</span>, d =>
+    <span class="str">`translate(0, ${yScale(d.screen_tech)})`</span>);</pre>
+    </div>
+
+    <div class="step-card">
+      <div class="step-accent"></div>
+      <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Add Back Rectangles + Category &amp; Count Labels</span></div>
+      <div class="grid2">
+        <div>
+          <p class="file-lbl">Category label</p>
+          <pre>barAndLabel.<span class="fn">append</span>(<span class="str">"text"</span>)
+  .<span class="fn">text</span>(d => d.screen_tech)
+  .<span class="fn">attr</span>(<span class="str">"x"</span>, <span class="num">-8</span>)
+  .<span class="fn">attr</span>(<span class="str">"text-anchor"</span>, <span class="str">"end"</span>);</pre>
+        </div>
+        <div>
+          <p class="file-lbl">Count label</p>
+          <pre>barAndLabel.<span class="fn">append</span>(<span class="str">"text"</span>)
+  .<span class="fn">text</span>(d => d.count)
+  .<span class="fn">attr</span>(<span class="str">"x"</span>, d =>
+    <span class="fn">xScale</span>(d.count) + <span class="num">6</span>);</pre>
+        </div>
+      </div>
+    </div>
+
+    <div class="svg-section">
+      <div class="svg-label">LIVE D3 OUTPUT — labelled bar chart</div>
+      <div class="responsive-svg-container" id="ex47-container"></div>
+    </div>
+
+    <div class="complete-banner">
+      <div class="complete-tag">COMPLETE</div>
+      <p class="step-desc" style="margin:0">You have built a fully labelled, scaled D3 bar chart from a CSV file — covering SVG primitives, D3 selection, data binding, scaling, and grouping.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <span>COS30045 · Week 4 · Exercises 4.1–4.7</span>
+  <span>D3 Data Visualisation</span>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,64 +1,47 @@
-# COS30045 – Data Visualisation  
-## Exercise 0.2 – Energy Website
+# EnergyAU
 
-Welcome to **Exercise 0.2** for COS30045 Data Visualisation.
+EnergyAU is a static HTML, CSS, and JavaScript data visualisation website for Exercise 3. It uses files from Exercise 0.2 and presents a story about Australian television energy consumption.
 
-In this exercise, you will build a simple **Energy Data Webpage** using **HTML, CSS, and JavaScript**. The purpose of this exercise is to familiarise you with the development workflow using **GitHub and VS Code**, while preparing the foundation for future data visualisation tasks.
+## Data Story
 
----
+The audience for this visualisation is Australian households, students, and everyday consumers comparing televisions. Their interest is practical: a television is not only a one-time purchase because it continues to use electricity every time it is switched on.
 
-# Objective
+The story explains that screen technology affects active power use, larger screens generally require more electricity, and star ratings should be checked alongside active power before purchase.
 
-The objectives of this exercise are:
+## About the data
 
-- Understand how to use **GitHub for version control**
-- Practice **web development structure**
-- Build a **basic website**
-- Maintain **regular commits**
-- Identify commits that include **GenAI-generated code**
+### Data source
 
----
+The television energy consumption data is based on the Australian Government energy rating dataset for televisions available in the Australian market.
 
-# Step 1 – Fork the Repository
+### Data processing
 
-1. Open this repository.
-2. Click **Fork** at the top right of the page.
-3. This will create a copy of the repository in your GitHub account.
+The data was grouped and aggregated by technology, screen size, brand, active power, and star rating. Estimated annual electricity cost was derived from typical daily viewing and an approximate electricity tariff.
 
-Example:
+### Privacy
 
-Original repository : "github.com/rishmaf/COS30045-Data-Visualization/energy-webpage"
+The dataset describes appliance products, not people. It does not include names, addresses, household identities, or private customer records.
 
-Your forked repository : "github.com/yourusername/COS30045-Data-Visualization/energy-webpage"
+### Accuracy and limitations
 
+The values are educational summaries and estimates. Real household costs may differ depending on viewing habits, electricity provider, tariff, model, and TV settings.
 
----
+### Ethics
 
-# Step 2 – Clone the Repository
+The visualisation is intended to help consumers make informed and sustainable choices. It should not be used to unfairly promote or criticise a specific brand without reviewing the full model-level data.
 
-Clone your forked repository to your local machine using **VS Code** or the terminal.
+## AI Declaration
 
+AI assistance was used to help structure, write, and refine parts of the website and README. The final content was edited to match the assignment goal of telling a clear data story about television energy consumption.
 
+## Folder structure
 
-# Step 3 – Project Structure
-
-
-Your project must follow the structure below.
-
-```bash
-energy-webpage-v1
-│
-├── css
-│   └── styles.css
-│
-├── js
-│   └── scripts.js
-│
-├── images
-│   └── PowerIcon.png
-│
-├── data
-│   └── data.csv
-│
-├── index.html
-└── README.md
+- css/
+- data/
+- images/
+- js/
+- about.html
+- index.html
+- README.md
+- story.html
+- televisions.html
