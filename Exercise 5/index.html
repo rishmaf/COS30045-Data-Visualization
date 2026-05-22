@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise 5 Multi-chart Webpage</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+  <header class="page-header">
+    <h1>TV Energy Consumption Dashboard</h1>
+    <p>
+      This single webpage presents four D3 chart types. Use the navigation bar
+      below to switch between the scatter plot, donut chart, bar chart, and line chart.
+    </p>
+  </header>
+
+  <nav class="chart-nav">
+    <button class="nav-btn active" data-target="scatter-panel">Scatter Plot</button>
+    <button class="nav-btn" data-target="donut-panel">Donut Chart</button>
+    <button class="nav-btn" data-target="bar-panel">Bar Chart</button>
+    <button class="nav-btn" data-target="line-panel">Line Chart</button>
+  </nav>
+
+  <main class="chart-page">
+    <section id="scatter-panel" class="chart-panel active">
+      <div class="chart-card">
+        <h2>Scatter Plot</h2>
+        <p>Energy consumption versus star rating for TVs.</p>
+        <div id="scatter-chart" class="chart-container"></div>
+      </div>
+    </section>
+
+    <section id="donut-panel" class="chart-panel">
+      <div class="chart-card">
+        <h2>Donut Chart</h2>
+        <p>Average labelled energy consumption by screen technology across all TV sizes.</p>
+        <div id="donut-chart" class="chart-container"></div>
+      </div>
+    </section>
+
+    <section id="bar-panel" class="chart-panel">
+      <div class="chart-card">
+        <h2>Bar Chart</h2>
+        <p>Average labelled energy consumption by screen technology for 55-inch TVs only.</p>
+        <div id="bar-chart" class="chart-container"></div>
+      </div>
+    </section>
+
+    <section id="line-panel" class="chart-panel">
+      <div class="chart-card">
+        <h2>Line Chart</h2>
+        <p>Average Australian spot power prices from 1998 to 2024.</p>
+        <div id="line-chart" class="chart-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/scatter.js"></script>
+  <script src="js/donut.js"></script>
+  <script src="js/bar55.js"></script>
+  <script src="js/line.js"></script>
+  <script src="js/nav.js"></script>
+</body>
+</html>
