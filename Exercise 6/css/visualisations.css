@@ -1,0 +1,38 @@
+.responsive-svg-container {
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+}
+
+@media screen and (max-width: 596px) {
+    .responsive-svg-container {
+        margin-bottom: 20px;
+    }
+}
+
+.axis-label {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    fill: #5a3e2b;
+}
+
+.axis path,
+.axis line {
+    stroke: #5a3e2b;
+}
+
+.axis text {
+    fill: #5a3e2b;
+    font-size: 12px;
+}
+
+.bar {
+    fill: #6c6f70;
+    stroke: #f4efe6;
+    stroke-width: 2;
+}
+
+.tooltip text,
+.tooltip .tooltip-text {
+    pointer-events: none;
+}

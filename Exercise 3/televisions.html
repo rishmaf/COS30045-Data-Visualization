@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Television Insights | EnergyAU</title>
+<link rel="icon" href="images/PowerIcon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="index.html"><img src="images/PowerIcon.png" alt="EnergyAU logo"><span>EnergyAU</span></a>
+    <button class="menu-btn">Menu</button>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="televisions.html">Televisions</a>
+      <a href="story.html">Data Story</a>
+      <a href="about.html">About Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero compact">
+  <img src="images/hero-television-efficiency.png" alt="Television energy visual">
+  <div class="hero-content">
+    <p class="eyebrow">Market Analysis</p>
+    <h1>Television <em>insights</em></h1>
+    <p>A close look at the Australian TV market — screen technologies, sizes, brands, and the energy efficiency that hides behind the spec sheet.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container grid">
+    <div class="chart-card">
+      <div class="chart-text"><h3>Q1. Which TV screen technologies are most common?</h3><p>LCD (LED) is the dominant technology, followed by standard LCD and OLED.</p></div>
+      <div class="chart-wrap"><canvas id="techChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-text"><h3>Q2. Which screen sizes appear most often?</h3><p>The most frequent sizes in the Australian market are 65-inch and 55-inch models.</p></div>
+      <div class="chart-wrap"><canvas id="sizeChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-text"><h3>Q3. Which brands have the largest number of models?</h3><p>Samsung, LG, and Sony maintain some of the most extensive model lineups.</p></div>
+      <div class="chart-wrap"><canvas id="brandChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-text"><h3>Q4. Which screen technologies use more active power?</h3><p>Plasma TVs consume substantially more energy than LCD and LED models.</p></div>
+      <div class="chart-wrap"><canvas id="powerTechChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-text"><h3>Q5. How does screen size relate to active power usage?</h3><p>Power use rises as screen size increases, making larger TVs more expensive to run.</p></div>
+      <div class="chart-wrap"><canvas id="sizePowerChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-text"><h3>Q6. How do star ratings change as screen size increases?</h3><p>Smaller TVs tend to have stronger star ratings, while larger screens require careful label comparison.</p></div>
+      <div class="chart-wrap"><canvas id="starChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-text"><h3>Q7. Which brands tend to use more average power?</h3><p>Average power varies by brand mix and model range.</p></div>
+      <div class="chart-wrap"><canvas id="brandPowerChart"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="images/PowerIcon.png" alt="EnergyAU"><span>EnergyAU</span></div>
+    <span>© 2026 Adhuham — COS30045 Data Visualisation</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

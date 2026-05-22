@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Story | EnergyAU</title>
+<link rel="icon" href="images/PowerIcon.png">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="nav-shell">
+    <a class="brand" href="index.html"><img src="images/PowerIcon.png" alt="EnergyAU logo"><span>EnergyAU</span></a>
+    <button class="menu-btn">Menu</button>
+    <nav class="nav">
+      <a href="index.html">Home</a>
+      <a href="televisions.html">Televisions</a>
+      <a href="story.html">Data Story</a>
+      <a href="about.html">About Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero compact">
+  <img src="images/hero-television-efficiency.png" alt="TV data story visual">
+  <div class="hero-content">
+    <p class="eyebrow">Data Story</p>
+    <h1>The hidden cost of a <em>bigger screen</em>.</h1>
+    <p>Australian TV buyers compare brand, size, and picture quality first. This story makes the case for adding one more thing to the list — energy.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container narrow grid">
+    <div class="story-panel">
+      <img src="images/hero-about-sustainability.png" alt="Sustainability visual">
+      <p class="eyebrow">Story Overview</p>
+      <h2>A television isn't a one-time purchase. It keeps costing money every time it's switched on.</h2>
+      <p>This data story is written for Australian households choosing a TV. The goal is simple — make energy consumption feel practical by connecting screen technology, active power, star ratings, and estimated annual cost into a single decision.</p>
+    </div>
+
+    <div class="grid cards-3">
+      <div class="card">
+        <p class="eyebrow">Audience</p>
+        <h3>Australian households</h3>
+        <p>People comparing televisions for everyday use, especially buyers who want a larger screen without being surprised by long-term electricity costs.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Interest</p>
+        <h3>Lower running costs</h3>
+        <p>The visualisation helps viewers translate watts, screen size, and star ratings into a practical shopping question.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Decision</p>
+        <h3>Choose efficiently</h3>
+        <p>The story encourages consumers to weigh active power and energy labels alongside price when making the final pick.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="eyebrow">The Story</p>
+      <h2>Bigger screens can be exciting — but efficiency decides the long-term value.</h2>
+      <div class="step"><div class="step-num">1</div><p><strong>Start with technology.</strong> Plasma models sit far above the rest for active power, while LCD and LED options generally use less electricity for the same viewing experience.</p></div>
+      <div class="step"><div class="step-num">2</div><p><strong>Then consider size.</strong> A larger screen usually draws more power. Over years of daily viewing, that gap becomes a noticeable household cost.</p></div>
+      <div class="step"><div class="step-num">3</div><p><strong>Finish with the label.</strong> Star ratings should be read alongside watts and expected daily usage — not in isolation.</p></div>
+    </div>
+
+    <div class="chart-card">
+      <div class="chart-text"><h3>Technology shapes efficiency</h3><p>The technology inside the screen strongly affects how much electricity the TV uses during regular viewing.</p></div>
+      <div class="chart-wrap"><canvas id="storyTechChart"></canvas></div>
+    </div>
+    <div class="chart-card">
+      <div class="chart-text"><h3>The cost correlation</h3><p>As active power usage increases, so does the estimated annual electricity cost — almost in a straight line.</p></div>
+      <div class="chart-wrap"><canvas id="storyCostChart"></canvas></div>
+    </div>
+
+    <div class="grid cards-2">
+      <div class="card takeaway">
+        <h3>Key takeaways</h3>
+        <ul>
+          <li>LCD and LED technology remain strong efficiency choices.</li>
+          <li>Higher wattage translates almost directly to a higher annual electricity bill.</li>
+          <li>Large screens aren't automatically bad — but their running costs deserve a check.</li>
+          <li>Star ratings provide a quick proxy for long-term efficiency.</li>
+        </ul>
+      </div>
+      <div class="card final-message">
+        <h3>The best TV isn't only the biggest or brightest.</h3>
+        <p>Before buying, compare the energy label and active power rating with the same care you give to screen size and price.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><img src="images/PowerIcon.png" alt="EnergyAU"><span>EnergyAU</span></div>
+    <span>© 2026 Adhuham — COS30045 Data Visualisation</span>
+  </div>
+</footer>
+<script src="js/main.js"></script>
+</body>
+</html>

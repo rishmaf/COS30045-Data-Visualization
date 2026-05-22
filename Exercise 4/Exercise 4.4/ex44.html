@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>4.4 Load Data — COS30045 Week 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="bg-fixed"><div class="bg-grid"></div><div class="bg-glow"></div></div>
+
+<header>
+  <span class="logo">&#x2B21; COS30045 / WEEK 4</span>
+  <span class="hdr-badge">Data Visualisation</span>
+</header>
+
+<div class="ex-nav">
+  <nav>
+    <a href="ex41.html"><span class="tnum">4.1</span><span class="tsub">SVG Shapes</span></a>
+    <a href="ex42.html"><span class="tnum">4.2</span><span class="tsub">D3 Manipulate</span></a>
+    <a href="ex43.html"><span class="tnum">4.3</span><span class="tsub">D3 Setup</span></a>
+    <a href="ex44.html" class="active"><span class="tnum">4.4</span><span class="tsub">Load Data</span></a>
+    <a href="ex45.html"><span class="tnum">4.5</span><span class="tsub">Bind &amp; Draw</span></a>
+    <a href="ex46.html"><span class="tnum">4.6</span><span class="tsub">Scaling</span></a>
+    <a href="ex47.html"><span class="tnum">4.7</span><span class="tsub">Labels</span></a>
+  </nav>
+</div>
+
+<main>
+  <div class="ex-intro">
+    <div class="ex-tag">Exercise 4.4</div>
+    <h2 class="ex-h2">Load CSV Data<br/><span>d3.csv() &amp; Formatting</span></h2>
+    <p class="ex-aim">Learn how to load and format CSV data so it is ready for D3. Use d3.csv() with a row conversion function to ensure numeric data is typed correctly, then find key statistics about the dataset.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">PREP</span><span class="step-title">Set Up a Data Folder</span></div>
+    <p class="step-desc">Create a <code>data/</code> folder in your project. The file <code>data/tvScreenTechCount.csv</code> is already included in this zip. It contains three rows: LCD, LCD (LED), and OLED counts.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Load CSV with d3.csv()</span></div>
+    <p class="step-desc">The row conversion function (second argument) runs for every row. Use the unary <code>+</code> operator to coerce string values to numbers.</p>
+    <pre>d3.<span class="fn">csv</span>(<span class="str">"data/tvScreenTechCount.csv"</span>, d => {
+  <span class="kw">return</span> {
+    screen_tech: d.Screen_Tech,
+    count: <span class="num">+</span>d[<span class="str">"Count(Brand)"</span>]  <span class="cm">// coerce to number</span>
+  };
+});</pre>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Inspect Data in the Console</span></div>
+    <p class="step-desc">Chain a <code>.then()</code> promise to log the parsed array. The loaded data is shown in the table below:</p>
+    <div id="ex44-table-wrap" style="margin-top:.75rem"></div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Find Key Statistics</span></div>
+    <pre>.<span class="fn">then</span>(data => {
+  console.<span class="fn">log</span>(data.<span class="fn">length</span>);
+  console.<span class="fn">log</span>(d3.<span class="fn">max</span>(data, d => d.count));
+  console.<span class="fn">log</span>(d3.<span class="fn">min</span>(data, d => d.count));
+  console.<span class="fn">log</span>(d3.<span class="fn">extent</span>(data, d => d.count)); <span class="cm">// [min, max]</span>
+});</pre>
+    <div id="ex44-stats" class="stats-grid" style="display:none;margin-top:1rem"></div>
+  </div>
+
+  <div class="page-nav">
+    <a href="ex43.html">← Previous: 4.3 D3 Setup</a>
+    <a href="ex45.html">Next: 4.5 Bind &amp; Draw →</a>
+  </div>
+</main>
+
+<footer>
+  <span>COS30045 · Week 4 · Exercise 4.4</span>
+  <span>Load CSV Data · requires Live Server</span>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+  d3.csv("data/tvScreenTechCount.csv", d => ({
+    screen_tech: d["Screen_Tech"],
+    count: +d["Count(Brand)"]
+  })).then(data => {
+    data.sort((a, b) => b.count - a.count);
+
+    const wrap = document.getElementById("ex44-table-wrap");
+    wrap.innerHTML = `
+      <table class="data-table">
+        <thead><tr><th>screen_tech</th><th>count</th><th>type check</th></tr></thead>
+        <tbody>${data.map(d => `
+          <tr>
+            <td class="td-cat">${d.screen_tech}</td>
+            <td class="td-num">${d.count}</td>
+            <td class="td-type">${typeof d.count === "number" ? "number ✓" : "string ✗"}</td>
+          </tr>`).join("")}
+        </tbody>
+      </table>`;
+
+    const statsEl = document.getElementById("ex44-stats");
+    statsEl.style.display = "grid";
+    statsEl.innerHTML = [
+      { label: "data.length",   value: data.length },
+      { label: "d3.max(count)", value: d3.max(data, d => d.count).toLocaleString() },
+      { label: "d3.min(count)", value: d3.min(data, d => d.count).toLocaleString() },
+      { label: "d3.extent",     value: `[${d3.extent(data, d => d.count).join(", ")}]` },
+    ].map(s => `<div class="stat-box"><div class="stat-lbl">${s.label}</div><div class="stat-val">${s.value}</div></div>`).join("");
+
+    console.log("Loaded data:", data);
+  }).catch(err => {
+    document.getElementById("ex44-table-wrap").innerHTML =
+      `<p style="font-family:var(--mono);font-size:12px;color:#e06060;padding:1rem 0">
+        ⚠ CSV failed to load — open this file with a local server (e.g. VS Code Live Server), not directly from the file system.
+      </p>`;
+  });
+</script>
+</body>
+</html>

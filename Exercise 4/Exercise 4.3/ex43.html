@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>4.3 D3 Setup — COS30045 Week 4</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div class="bg-fixed"><div class="bg-grid"></div><div class="bg-glow"></div></div>
+
+<header>
+  <span class="logo">&#x2B21; COS30045 / WEEK 4</span>
+  <span class="hdr-badge">Data Visualisation</span>
+</header>
+
+<div class="ex-nav">
+  <nav>
+    <a href="ex41.html"><span class="tnum">4.1</span><span class="tsub">SVG Shapes</span></a>
+    <a href="ex42.html"><span class="tnum">4.2</span><span class="tsub">D3 Manipulate</span></a>
+    <a href="ex43.html" class="active"><span class="tnum">4.3</span><span class="tsub">D3 Setup</span></a>
+    <a href="ex44.html"><span class="tnum">4.4</span><span class="tsub">Load Data</span></a>
+    <a href="ex45.html"><span class="tnum">4.5</span><span class="tsub">Bind &amp; Draw</span></a>
+    <a href="ex46.html"><span class="tnum">4.6</span><span class="tsub">Scaling</span></a>
+    <a href="ex47.html"><span class="tnum">4.7</span><span class="tsub">Labels</span></a>
+  </nav>
+</div>
+
+<main>
+  <div class="ex-intro">
+    <div class="ex-tag">Exercise 4.3</div>
+    <h2 class="ex-h2">D3 Setup<br/><span>SVG Canvas &amp; Test Rect</span></h2>
+    <p class="ex-aim">Set up the D3 scaffolding — a responsive SVG container with a viewBox, and a hard-coded test rectangle to confirm D3 is working before adding data-driven bars.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">STEP 1</span><span class="step-title">Clean Slate — Remove Old D3 Code</span></div>
+    <p class="step-desc">Delete any D3 code from Exercise 4.2 except the D3 library <code>&lt;script&gt;</code> tag and the link to your D3 JS file.</p>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">STEP 2</span><span class="step-title">Responsive SVG Container — CSS + HTML</span></div>
+    <p class="step-desc">Add a CSS class and a container div to make the SVG scale with the window.</p>
+    <div class="grid2">
+      <div>
+        <p class="file-lbl">style.css</p>
+        <pre><span class="cm">/* makes container responsive */</span>
+<span class="fn">.responsive-svg-container</span> {
+    margin-right: <span class="num">auto</span>;
+    margin-left: <span class="num">auto</span>;
+    width: <span class="num">100%</span>;
+    max-width: <span class="num">1200px</span>;
+}</pre>
+      </div>
+      <div>
+        <p class="file-lbl">index.html</p>
+        <pre><span class="cm">&lt;!-- container for D3 SVG --&gt;</span>
+<span class="kw">&lt;div</span> <span class="fn">class</span>=<span class="str">"responsive-svg-container"</span><span class="kw">&gt;
+&lt;/div&gt;</span></pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">STEP 3</span><span class="step-title">Create SVG Object with viewBox</span></div>
+    <p class="step-desc">Use D3 to append an SVG. The <code>viewBox</code> makes the canvas scale proportionally to any window size.</p>
+    <pre><span class="kw">const</span> svg = d3.<span class="fn">select</span>(<span class="str">".responsive-svg-container"</span>)
+    .<span class="fn">append</span>(<span class="str">"svg"</span>)
+      .<span class="fn">attr</span>(<span class="str">"viewBox"</span>, <span class="str">"0 0 1200 600"</span>)
+      .<span class="fn">style</span>(<span class="str">"border"</span>, <span class="str">"1px solid black"</span>);
+
+<span class="cm">// Resize the window — the box scales with it.</span></pre>
+  </div>
+
+  <div class="step-card">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num">STEP 4</span><span class="step-title">Append a Test SVG Rectangle</span></div>
+    <p class="step-desc">Confirm D3 is wired up by appending a hard-coded rectangle. Resize the window to watch the viewBox scale.</p>
+    <pre><span class="cm">// Hard-coded test — no data yet</span>
+svg
+  .<span class="fn">append</span>(<span class="str">"rect"</span>)
+    .<span class="fn">attr</span>(<span class="str">"x"</span>, <span class="num">10</span>)  .<span class="fn">attr</span>(<span class="str">"y"</span>, <span class="num">10</span>)
+    .<span class="fn">attr</span>(<span class="str">"width"</span>, <span class="num">414</span>)  .<span class="fn">attr</span>(<span class="str">"height"</span>, <span class="num">16</span>)
+    .<span class="fn">attr</span>(<span class="str">"fill"</span>, <span class="str">"#c8f060"</span>);</pre>
+  </div>
+
+  <div class="svg-section">
+    <div class="svg-label">LIVE D3 OUTPUT — test rect rendered by D3</div>
+    <div class="responsive-svg-container" id="ex43-container"></div>
+  </div>
+
+  <div class="step-card dom-block">
+    <div class="step-accent"></div>
+    <div class="step-hdr"><span class="step-num dom-num">DOM</span><span class="step-title">What the Browser Developer Tools Show</span></div>
+    <p class="step-desc">Open DevTools (F12) → Elements. D3 has injected an <code>&lt;svg&gt;</code> containing the <code>&lt;rect&gt;</code>:</p>
+    <div class="dom-view">
+      <span class="dt">&lt;div</span> <span class="da">class</span>=<span class="dv">"responsive-svg-container"</span><span class="dt">&gt;</span><br/>
+      <div class="di"><span class="dt">&lt;svg</span> <span class="da">viewBox</span>=<span class="dv">"0 0 1200 600"</span><span class="dt">&gt;</span><br/>
+      <div class="di"><span class="dt">&lt;rect</span> <span class="da">x</span>=<span class="dv">"10"</span> <span class="da">y</span>=<span class="dv">"10"</span> <span class="da">width</span>=<span class="dv">"414"</span> <span class="da">fill</span>=<span class="dv">"#c8f060"</span><span class="dt">/&gt;</span> <span class="dc">&#8592; test rect</span></div>
+      <span class="dt">&lt;/svg&gt;</span></div>
+      <span class="dt">&lt;/div&gt;</span>
+    </div>
+  </div>
+
+  <div class="page-nav">
+    <a href="ex42.html">← Previous: 4.2 D3 Manipulate</a>
+    <a href="ex44.html">Next: 4.4 Load Data →</a>
+  </div>
+</main>
+
+<footer>
+  <span>COS30045 · Week 4 · Exercise 4.3</span>
+  <span>D3 Setup</span>
+</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+  const container = document.getElementById("ex43-container");
+  const svg = d3.select(container)
+    .append("svg")
+    .attr("viewBox", "0 0 1200 600")
+    .style("width", "100%").style("display", "block").style("background", "#080808");
+
+  svg.append("rect")
+    .attr("x", 10).attr("y", 10).attr("width", 414).attr("height", 16)
+    .attr("fill", "#c8f060").attr("rx", 3);
+
+  svg.append("text")
+    .attr("x", 10 + 414 / 2).attr("y", 10 + 16 / 2 + 4)
+    .attr("text-anchor", "middle")
+    .attr("font-family", "Space Mono, monospace").attr("font-size", "10")
+    .attr("fill", "#0d0d0d").attr("font-weight", "700")
+    .text("test rect — x:10  y:10  width:414  height:16  fill:#c8f060");
+
+  svg.append("text")
+    .attr("x", 600).attr("y", 580)
+    .attr("text-anchor", "middle").attr("font-family", "Space Mono, monospace")
+    .attr("font-size", "11").attr("fill", "#555")
+    .text("viewBox: 0 0 1200 600  ·  responsive via .responsive-svg-container");
+</script>
+</body>
+</html>
