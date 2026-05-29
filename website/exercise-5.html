@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 5 — Lines, bars, donuts &amp; scatter</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../exercise%205/style.css">
+    <link rel="stylesheet" href="css/exercise-labs.css">
+</head>
+<body data-page="ex5">
+    <header>
+        <div class="header-inner">
+            <div class="header-top">
+                <a href="index.html" class="logo">
+                    <img src="images/PowerIcon.png" alt="Power Icon" class="logo-icon" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='inline-flex';">
+                    <span id="logo-fallback" class="logo-badge" aria-hidden="true">⚡</span>
+                    <span>TV Data Visualisation - Australia</span>
+                </a>
+                <nav class="site-nav" aria-label="Site sections">
+                    <a href="index.html" class="site-nav-link" data-page="home">Home</a>
+                    <a href="questions.html" class="site-nav-link" data-page="questions">Questions (Q1–Q6)</a>
+                    <a href="exercise-4.html" class="site-nav-link" data-page="ex4">Exercise 4</a>
+                    <a href="exercise-5.html" class="site-nav-link" data-page="ex5">Exercise 5</a>
+                    <a href="exercise-6.html" class="site-nav-link" data-page="ex6">Exercise 6</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page active dashboard exercise-labs-main">
+            <header class="exercise-lab-hero">
+                <p class="eyebrow">Week 5</p>
+                <h1>Exercise 5 — Lines, bars, donuts &amp; scatter</h1>
+                <p class="hero-lead">Four chart types on Australian power prices and TV energy data — line, grouped bars, donut, and scatter.</p>
+                <div class="hero-chip-row" aria-hidden="true">
+                    <span class="hero-chip">Line chart</span>
+                    <span class="hero-chip">Grouped bars</span>
+                    <span class="hero-chip">Donut</span>
+                    <span class="hero-chip">Scatter</span>
+                </div>
+            </header>
+
+            <div class="exercise-charts-stack">
+                <section class="chart-card exercise-chart-card">
+                    <div class="chart-card__head">
+                        <span class="chart-card__step">Chart 1</span>
+                        <h2>Spot power prices (1998–2024)</h2>
+                    </div>
+                    <div class="chart-card__body">
+                        <div class="chart-panel ex-chart-frame" id="line-chart"></div>
+                    </div>
+                </section>
+
+                <section class="chart-card exercise-chart-card">
+                    <div class="chart-card__head">
+                        <span class="chart-card__step">Chart 2</span>
+                        <h2>55″ TV technology comparison</h2>
+                    </div>
+                    <div class="chart-card__body">
+                        <div class="chart-panel ex-chart-frame" id="bars"></div>
+                        <div class="legend-container legend-container--bars"></div>
+                    </div>
+                </section>
+
+                <section class="chart-card exercise-chart-card">
+                    <div class="chart-card__head">
+                        <span class="chart-card__step">Chart 3</span>
+                        <h2>Energy consumption by screen technology (all sizes)</h2>
+                    </div>
+                    <div class="chart-card__body">
+                        <div class="chart-panel ex-chart-frame" id="donut"></div>
+                        <div class="legend-container legend-container--donut"></div>
+                    </div>
+                </section>
+
+                <section class="chart-card exercise-chart-card">
+                    <div class="chart-card__head">
+                        <span class="chart-card__step">Chart 4</span>
+                        <h2>Energy vs star rating (scatter plot)</h2>
+                        <p id="scatter-status" class="scatter-status"></p>
+                    </div>
+                    <div class="chart-card__body">
+                        <div class="scatter-legend" id="scatter-legend"></div>
+                        <div class="chart-panel ex-chart-frame" id="scatter-plot"></div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <div id="chart-tooltip" class="chart-tooltip" role="tooltip"></div>
+
+    <footer>
+        <p>&copy; 2026 Kho Wei Seong. Code and content are made by Kho Wei Seong.</p>
+    </footer>
+
+    <script src="../exercise%205/embeddedData.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="../exercise%205/shared-constants.js"></script>
+    <script src="../exercise%205/chart-utils.js"></script>
+    <script src="../exercise%205/lineChart.js"></script>
+    <script src="../exercise%205/scales.js"></script>
+    <script src="../exercise%205/donut_charts.js"></script>
+    <script src="../exercise%205/stacked-bars.js"></script>
+    <script src="../exercise%205/legend.js"></script>
+    <script src="../exercise%205/dataLoad.js"></script>
+    <script src="../exercise%205/scatter-chart.js"></script>
+    <script src="../exercise%205/scatter-tooltip.js"></script>
+    <script src="../exercise%205/scatter-init.js"></script>
+    <script src="js/site-nav.js"></script>
+    <script src="js/exercise-chart-normalize.js"></script>
+</body>
+</html>

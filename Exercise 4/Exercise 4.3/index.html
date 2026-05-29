@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Energy Use Visualisation (D3.js)</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main>
+    <h2>55 inch TV energy by screen type</h2>
+    <div class="responsive-svg-container"></div>
+  </main>
+
+  <!-- Fallback when opened as file:// (use Live Server for d3.csv from data/) -->
+  <script type="text/csv" id="embedded-csv">
+Screen_Tech,Mean(Labelled energy consumption (kWh/year))
+LCD,326.00166666666667
+LED,330.30270907513136
+OLED,386.54315476190476
+  </script>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="../chart-console.js"></script>
+  <script src="d3_script.js"></script>
+
+</body>
+</html>

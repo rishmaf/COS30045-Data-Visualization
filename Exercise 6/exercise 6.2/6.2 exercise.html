@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise 6 — Interaction</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main>
+    <header class="page-header">
+      <h1>Exercise 6 — Interaction</h1>
+      <p id="load-status" class="load-status" aria-live="polite"></p>
+    </header>
+
+    <div class="charts-row">
+      <section class="chart-card">
+        <div class="chart-card__head">
+          <h2>Energy consumption</h2>
+        </div>
+        <div class="chart-filters-wrap">
+          <span class="chart-filters-label">Filter:</span>
+          <div class="chart-filters" id="filters-histogram"></div>
+        </div>
+        <p class="filter-summary" id="filter-summary-histogram"></p>
+        <div class="chart-panel" id="histogram"></div>
+      </section>
+
+      <section class="chart-card">
+        <div class="chart-card__head">
+          <h2>Energy vs star rating (scatter plot)</h2>
+        </div>
+        <div class="chart-filters-wrap">
+          <span class="chart-filters-label">Filter:</span>
+          <div class="chart-filters" id="filters-line"></div>
+        </div>
+        <p class="filter-summary" id="filter-summary-line"></p>
+        <div class="scatter-legend" id="scatter-legend"></div>
+        <div class="chart-panel" id="line-chart"></div>
+      </section>
+    </div>
+  </main>
+
+  <div id="chart-tooltip" class="chart-tooltip" role="tooltip"></div>
+
+  <script src="embeddedData.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="shared-constants.js"></script>
+  <script src="chart-utils.js"></script>
+  <script src="histogram.js"></script>
+  <script src="line-chart.js"></script>
+  <script src="tooltip.js"></script>
+  <script src="interactions.js"></script>
+  <script src="load-data.js"></script>
+
+</body>
+</html>

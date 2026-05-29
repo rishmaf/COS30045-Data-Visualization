@@ -1,0 +1,300 @@
+:root {
+  --bg: #e8ecf1;
+  --card: #ffffff;
+  --text: #1a2332;
+  --muted: #5c6b7a;
+  --border: #d8e0e8;
+  --shadow: 0 10px 40px rgba(26, 35, 50, 0.09);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 2rem 1.25rem 3rem;
+  background: linear-gradient(160deg, #f6f8ff 0%, #eef2ff 50%, #f8faff 100%);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+main {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem;
+}
+
+.page-header > p:first-of-type {
+  margin: 0 0 0.5rem;
+  color: var(--muted);
+}
+
+.load-status {
+  margin: 0.25rem 0 1.5rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.load-status--ok {
+  color: #2d7a4f;
+}
+
+.load-status--error {
+  color: #b42318;
+}
+
+.chart-filters-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.chart-filters-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.chart-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 1.1rem;
+  font-size: 0.88rem;
+  font-family: inherit;
+  border: 2px solid var(--border);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter:hover {
+  border-color: #b8c4d0;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.filter.active {
+  color: var(--text);
+  font-weight: 600;
+  border-color: var(--text);
+  background: #fff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.filter--all.active {
+  border-color: #2563eb;
+  background: #eaf2ff;
+}
+
+.filter--LCD.active {
+  border-color: #4a8f9c;
+  background: #e8f4f6;
+}
+
+.filter--LED.active {
+  border-color: #2a9cb8;
+  background: #e6f6fb;
+}
+
+.filter--OLED.active {
+  border-color: #c94a38;
+  background: #fdf0ee;
+}
+
+.filter-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.filter-dot--all {
+  background: linear-gradient(135deg, #2563eb, #4a8f9c, #c94a38);
+}
+
+.filter-summary {
+  margin: 0 0 0.75rem;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.filter-tag {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.filter-tag--all {
+  background: #eaf2ff;
+  color: #1d4ed8;
+}
+.filter-tag--LCD {
+  background: #e8f4f6;
+  color: #4a8f9c;
+}
+.filter-tag--LED {
+  background: #e6f6fb;
+  color: #2a9cb8;
+}
+.filter-tag--OLED {
+  background: #fdf0ee;
+  color: #c94a38;
+}
+
+.charts-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.35rem 1rem;
+}
+
+.chart-card__head h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.2rem;
+}
+
+.chart-card__head p {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.chart-panel {
+  background: linear-gradient(180deg, #fafbfc 0%, #fff 100%);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.5rem;
+  overflow: hidden;
+}
+
+.chart-panel svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.grid line {
+  stroke: var(--border);
+  stroke-opacity: 0.85;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.axis-x path,
+.axis-x line,
+.axis-y path,
+.axis-y line,
+.line-axis-x path,
+.line-axis-x line,
+.line-axis-y path,
+.line-axis-y line {
+  stroke: var(--border);
+}
+
+.axis-x text,
+.axis-y text,
+.line-axis-x text,
+.line-axis-y text {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.axis-label {
+  fill: #3d4f5f;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Segoe UI", system-ui, sans-serif;
+  pointer-events: none;
+}
+
+.hist-bar {
+  cursor: pointer;
+  shape-rendering: geometricPrecision;
+  transition: opacity 0.15s ease, stroke-width 0.15s ease;
+}
+
+.hist-bar:hover {
+  filter: brightness(1.05);
+}
+
+.scatter-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-bottom: 0.6rem;
+}
+
+.scatter-legend .legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.scatter-legend .legend-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+circle.data-point {
+  cursor: pointer;
+}
+
+.chart-tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  padding: 0.55rem 0.75rem;
+  background: #1a2332;
+  color: #fff;
+  font-size: 0.8rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  max-width: 220px;
+  line-height: 1.45;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+}
+
+.chart-tooltip strong {
+  display: block;
+  font-size: 0.88rem;
+  margin-bottom: 0.1rem;
+}
