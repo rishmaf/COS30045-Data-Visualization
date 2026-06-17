@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise 5 — Lines, bars, donuts, and scatter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main>
+    <header class="page-header">
+      <h1>Exercise 5 — All charts</h1>
+    </header>
+
+    <section class="chart-card">
+      <div class="chart-card__head">
+        <h2>Spot power prices (1998–2024)</h2>
+      </div>
+      <div class="chart-panel" id="line-chart"></div>
+    </section>
+
+    <section class="chart-card">
+      <div class="chart-card__head">
+        <h2>55″ TV technology comparison</h2>
+      </div>
+      <div class="chart-panel" id="bars"></div>
+      <div class="legend-container legend-container--bars"></div>
+    </section>
+
+    <section class="chart-card">
+      <div class="chart-card__head">
+        <h2>Energy consumption by screen technology (all sizes)</h2>
+      </div>
+      <div class="chart-panel" id="donut"></div>
+      <div class="legend-container legend-container--donut"></div>
+    </section>
+
+    <section class="chart-card">
+      <div class="chart-card__head">
+        <h2>Energy vs star rating (scatter plot)</h2>
+        <p id="scatter-status" class="scatter-status"></p>
+      </div>
+      <div class="scatter-legend" id="scatter-legend"></div>
+      <div class="chart-panel" id="scatter-plot"></div>
+    </section>
+  </main>
+
+  <div id="chart-tooltip" class="chart-tooltip" role="tooltip"></div>
+
+  <script src="embeddedData.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="shared-constants.js"></script>
+  <script src="chart-utils.js"></script>
+  <script src="lineChart.js"></script>
+  <script src="scales.js"></script>
+  <script src="donut_charts.js"></script>
+  <script src="stacked-bars.js"></script>
+  <script src="legend.js"></script>
+  <script src="dataLoad.js"></script>
+  <script src="scatter-chart.js"></script>
+  <script src="scatter-tooltip.js"></script>
+  <script src="scatter-init.js"></script>
+
+</body>
+</html>

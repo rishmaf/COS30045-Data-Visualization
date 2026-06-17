@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 6 — Histogram &amp; scatter interaction</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../Exercise%206/exercise%206.2/style.css">
+    <link rel="stylesheet" href="css/exercise-labs.css">
+</head>
+<body data-page="ex6">
+    <header>
+        <div class="header-inner">
+            <div class="header-top">
+                <a href="index.html" class="logo">
+                    <img src="images/PowerIcon.png" alt="Power Icon" class="logo-icon" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='inline-flex';">
+                    <span id="logo-fallback" class="logo-badge" aria-hidden="true">⚡</span>
+                    <span>TV Data Visualisation - Australia</span>
+                </a>
+                <nav class="site-nav" aria-label="Site sections">
+                    <a href="index.html" class="site-nav-link" data-page="home">Home</a>
+                    <a href="questions.html" class="site-nav-link" data-page="questions">Questions (Q1–Q6)</a>
+                    <a href="exercise-4.html" class="site-nav-link" data-page="ex4">Exercise 4</a>
+                    <a href="exercise-5.html" class="site-nav-link" data-page="ex5">Exercise 5</a>
+                    <a href="exercise-6.html" class="site-nav-link" data-page="ex6">Exercise 6</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="page active dashboard exercise-labs-main">
+            <header class="exercise-lab-hero">
+                <p class="eyebrow">Week 6</p>
+                <h1>Exercise 6 — Histogram &amp; scatter interaction</h1>
+                <p class="hero-lead">Linked histogram and scatter plot with screen-type filters, brushing, and tooltips.</p>
+                <div class="hero-chip-row" aria-hidden="true">
+                    <span class="hero-chip">Histogram</span>
+                    <span class="hero-chip">Scatter</span>
+                    <span class="hero-chip">Filters</span>
+                    <span class="hero-chip">Tooltips</span>
+                </div>
+            </header>
+
+            <div class="exercise-charts-stack">
+                <section class="chart-card exercise-chart-card">
+                    <div class="chart-card__head">
+                        <span class="chart-card__step">Chart 1</span>
+                        <h2>Energy consumption</h2>
+                    </div>
+                    <div class="chart-card__body">
+                        <div class="chart-filters-wrap">
+                            <span class="chart-filters-label">Filter:</span>
+                            <div class="chart-filters" id="filters-histogram"></div>
+                        </div>
+                        <p class="filter-summary" id="filter-summary-histogram"></p>
+                        <div class="chart-panel ex-chart-frame" id="histogram"></div>
+                    </div>
+                </section>
+
+                <section class="chart-card exercise-chart-card">
+                    <div class="chart-card__head">
+                        <span class="chart-card__step">Chart 2</span>
+                        <h2>Energy vs star rating (scatter plot)</h2>
+                    </div>
+                    <div class="chart-card__body">
+                        <div class="chart-filters-wrap">
+                            <span class="chart-filters-label">Filter:</span>
+                            <div class="chart-filters" id="filters-line"></div>
+                        </div>
+                        <p class="filter-summary" id="filter-summary-line"></p>
+                        <div class="scatter-legend" id="scatter-legend"></div>
+                        <div class="chart-panel ex-chart-frame" id="line-chart"></div>
+                    </div>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <div id="chart-tooltip" class="chart-tooltip" role="tooltip"></div>
+
+    <footer>
+        <p>&copy; 2026 Kho Wei Seong. Code and content are made by Kho Wei Seong.</p>
+    </footer>
+
+    <script src="../Exercise%206/exercise%206.2/embeddedData.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="../Exercise%206/exercise%206.2/shared-constants.js"></script>
+    <script src="../Exercise%206/exercise%206.2/chart-utils.js"></script>
+    <script src="../Exercise%206/exercise%206.2/histogram.js"></script>
+    <script src="../Exercise%206/exercise%206.2/line-chart.js"></script>
+    <script src="../Exercise%206/exercise%206.2/tooltip.js"></script>
+    <script src="../Exercise%206/exercise%206.2/interactions.js"></script>
+    <script src="../Exercise%206/exercise%206.2/load-data.js"></script>
+    <script src="js/site-nav.js"></script>
+    <script src="js/exercise-chart-normalize.js"></script>
+</body>
+</html>

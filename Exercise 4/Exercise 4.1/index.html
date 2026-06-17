@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise 4.1 – SVG House &amp; Garden (D3.js)</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Verdana, sans-serif;
+      text-align: center;
+      background: #f5f5f5;
+      padding: 20px;
+    }
+    #canvas {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    #canvas svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas"></div>
+
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script>
+    if (typeof d3 === "undefined") {
+      document.getElementById("canvas").innerHTML =
+        "<p style='color:red'>D3 failed to load. Use Live Server or check your internet connection.</p>";
+    } else {
+    const TOP_H = 400;
+    const GAP = 30;
+    const SCENE_H = 500;
+
+    const totalH = TOP_H + GAP + SCENE_H + GAP + SCENE_H;
+
+    const svg = d3.select("#canvas")
+      .append("svg")
+      .attr("viewBox", `0 0 900 ${totalH}`)
+      .attr("width", 900)
+      .attr("height", totalH)
+      .attr("preserveAspectRatio", "xMidYMid meet")
+      .style("width", "100%")
+      .style("height", "auto")
+      .style("display", "block")
+      .style("border", "1px solid #ccc");
+
+    // Shared helpers
+    function drawCloud(parent, x, y) {
+      const g = parent.append("g").attr("transform", `translate(${x},${y})`);
+      g.append("circle").attr("cx", 0).attr("cy", 15).attr("r", 28).attr("fill", "white");
+      g.append("circle").attr("cx", -28).attr("cy", 20).attr("r", 22).attr("fill", "white");
+      g.append("circle").attr("cx", 28).attr("cy", 20).attr("r", 22).attr("fill", "white");
+      g.append("circle").attr("cx", -14).attr("cy", 0).attr("r", 24).attr("fill", "white");
+      g.append("circle").attr("cx", 20).attr("cy", 2).attr("r", 26).attr("fill", "white");
+    }
+
+    function drawTree(parent, x, groundY) {
+      const TRUNK_H = 35;
+      const g = parent.append("g").attr("transform", `translate(${x}, ${groundY - TRUNK_H})`);
+      g.append("rect").attr("x", -5).attr("y", 0).attr("width", 10).attr("height", TRUNK_H).attr("fill", "#6b4220");
+      g.append("circle").attr("cx", 0).attr("cy", -14).attr("r", 30).attr("fill", "#27ae60");
+      g.append("circle").attr("cx", 0).attr("cy", -40).attr("r", 24).attr("fill", "#2ecc71");
+      g.append("circle").attr("cx", 0).attr("cy", -60).attr("r", 18).attr("fill", "#3ddc84");
+    }
+
+    function drawFlower(parent, x, y, color) {
+      const g = parent.append("g").attr("transform", `translate(${x},${y})`);
+      g.append("line").attr("x1", 0).attr("y1", 6).attr("x2", 0).attr("y2", 38)
+        .attr("stroke", "#2d6b1a").attr("stroke-width", 2.5).attr("stroke-linecap", "round");
+      g.append("rect").attr("x", -15).attr("y", 14).attr("width", 11).attr("height", 5)
+        .attr("fill", "#3d9b2e").attr("rx", 2);
+      g.append("rect").attr("x", 5).attr("y", 22).attr("width", 11).attr("height", 5)
+        .attr("fill", "#3d9b2e").attr("rx", 2);
+      [[0, -13], [12, -4], [8, 11], [-8, 11], [-12, -4]].forEach(([px, py]) => {
+        g.append("circle").attr("cx", px).attr("cy", py).attr("r", 7).attr("fill", color);
+      });
+      g.append("circle").attr("cx", 0).attr("cy", 0).attr("r", 6).attr("fill", "#f4d03f");
+      g.append("circle").attr("cx", 0).attr("cy", 0).attr("r", 3).attr("fill", "#e67e22");
+    }
+
+    // Figure 1.11 style – dashed lines to axes, blue dot, (x,y) label
+    const COORD_COLOR = "#2980b9";
+    const DASH = { stroke: COORD_COLOR, "stroke-width": 1.5, "stroke-dasharray": "5,4" };
+
+    function markPoint(parent, x, y) {
+      const g = parent.append("g");
+      g.append("line").attr("x1", 0).attr("y1", y).attr("x2", x).attr("y2", y).attr(DASH);
+      g.append("line").attr("x1", x).attr("y1", 0).attr("x2", x).attr("y2", y).attr(DASH);
+      g.append("circle").attr("cx", x).attr("cy", y).attr("r", 5)
+        .attr("fill", COORD_COLOR).attr("stroke", "#fff").attr("stroke-width", 1.5);
+      g.append("text").attr("x", x).attr("y", y - 8).attr("text-anchor", "middle")
+        .attr("font-family", "Verdana").attr("font-size", 11).attr("font-weight", "bold")
+        .attr("fill", COORD_COLOR).text(`(${x},${y})`);
+    }
+
+    function drawGarden(parent, showCoords) {
+      parent.append("rect").attr("x", 0).attr("y", 0).attr("width", 900).attr("height", SCENE_H).attr("fill", "#fafafa");
+      parent.append("rect").attr("x", 0).attr("y", 0).attr("width", 900).attr("height", 320).attr("fill", "#87ceeb");
+      parent.append("rect").attr("x", 0).attr("y", 320).attr("width", 900).attr("height", 180).attr("fill", "#6abf45");
+
+      parent.append("circle").attr("cx", 780).attr("cy", 70).attr("r", 40)
+        .attr("fill", "yellow").attr("stroke", "orange").attr("stroke-width", 2);
+
+      drawCloud(parent, 120, 70);
+      drawCloud(parent, 320, 50);
+      drawCloud(parent, 500, 85);
+      drawCloud(parent, 680, 60);
+      drawCloud(parent, 820, 100);
+      const GROUND = 320;
+      [70, 180, 520, 620, 750, 850].forEach(x => drawTree(parent, x, GROUND));
+
+      parent.append("ellipse").attr("cx", 620).attr("cy", 435).attr("rx", 75).attr("ry", 30).attr("fill", "#9a8870");
+      parent.append("ellipse").attr("cx", 620).attr("cy", 432).attr("rx", 65).attr("ry", 24).attr("fill", "#5ab5d0");
+      parent.append("line").attr("x1", 585).attr("y1", 428).attr("x2", 620).attr("y2", 428)
+        .attr("stroke", "rgba(255,255,255,0.6)").attr("stroke-width", 2).attr("stroke-linecap", "round");
+      parent.append("line").attr("x1", 600).attr("y1", 436).attr("x2", 645).attr("y2", 436)
+        .attr("stroke", "rgba(255,255,255,0.4)").attr("stroke-width", 1.5).attr("stroke-linecap", "round");
+      [
+        [88, 355, "#e74c3c"], [118, 365, "#f1c40f"], [92, 378, "#e91e63"],
+        [145, 358, "#3498db"], [168, 372, "#9b59b6"], [135, 388, "#e67e22"],
+        [105, 392, "#f39c12"],
+        [532, 368, "#e67e22"], [548, 376, "#e91e63"],
+        [702, 392, "#e74c3c"], [728, 378, "#f1c40f"], [755, 385, "#9b59b6"], [778, 395, "#3498db"]
+      ].forEach(([x, y, color]) => drawFlower(parent, x, y, color));
+
+      const house = parent.append("g").attr("transform", "translate(300, 180)");
+      house.append("rect").attr("x", 0).attr("y", 80).attr("width", 200).attr("height", 120)
+        .attr("fill", "#f4d9a0").attr("stroke", "#c8a060").attr("stroke-width", 2);
+      house.append("path").attr("d", "M-10,85 L100,10 L210,85 Z")
+        .attr("fill", "#c0392b").attr("stroke", "#922b21").attr("stroke-width", 2);
+      house.append("rect").attr("x", 80).attr("y", 130).attr("width", 40).attr("height", 70).attr("fill", "#7d4e1f");
+      house.append("circle").attr("cx", 112).attr("cy", 168).attr("r", 4).attr("fill", "gold");
+      const winL = house.append("g").attr("transform", "translate(20, 100)");
+      winL.append("rect").attr("width", 50).attr("height", 45).attr("fill", "#aed6f1")
+        .attr("stroke", "#555").attr("stroke-width", 1.5);
+      winL.append("line").attr("x1", 25).attr("y1", 0).attr("x2", 25).attr("y2", 45)
+        .attr("stroke", "#555").attr("stroke-width", 1.5);
+      winL.append("line").attr("x1", 0).attr("y1", 22).attr("x2", 50).attr("y2", 22)
+        .attr("stroke", "#555").attr("stroke-width", 1.5);
+
+      const winR = house.append("g").attr("transform", "translate(130, 100)");
+      winR.append("rect").attr("width", 50).attr("height", 45).attr("fill", "#aed6f1")
+        .attr("stroke", "#555").attr("stroke-width", 1.5);
+      winR.append("line").attr("x1", 25).attr("y1", 0).attr("x2", 25).attr("y2", 45)
+        .attr("stroke", "#555").attr("stroke-width", 1.5);
+      winR.append("line").attr("x1", 0).attr("y1", 22).attr("x2", 50).attr("y2", 22)
+        .attr("stroke", "#555").attr("stroke-width", 1.5);
+
+      for (let x = 80; x < 260; x += 25) {
+        parent.append("rect").attr("x", x).attr("y", 300).attr("width", 10).attr("height", 35)
+          .attr("fill", "#f0e0c0").attr("stroke", "#c8b080");
+      }
+      parent.append("line").attr("x1", 80).attr("y1", 315).attr("x2", 260).attr("y2", 315)
+        .attr("stroke", "#c8b080").attr("stroke-width", 3);
+
+      if (showCoords) {
+        const marks = parent.append("g").attr("class", "coord-marks");
+        const scene3Points = [
+          [0, 0],
+          [780, 70],
+          [120, 70],
+          [320, 50],
+          [500, 85],
+          [680, 60],
+          [820, 100],
+          [70, GROUND],
+          [180, GROUND],
+          [520, GROUND],
+          [620, GROUND],
+          [750, GROUND],
+          [850, GROUND],
+          [620, 432],
+          [88, 355],
+          [118, 365],
+          [92, 378],
+          [145, 358],
+          [168, 372],
+          [135, 388],
+          [105, 392],
+          [532, 368],
+          [548, 376],
+          [702, 392],
+          [728, 378],
+          [755, 385],
+          [778, 395],
+          [300, 260],
+          [400, 190],
+          [400, 345],
+          [345, 302],
+          [455, 302],
+          [80, 300],
+          [320, 280],
+          [430, 280],
+          [380, 310],
+        ];
+        scene3Points.forEach(([x, y]) => markPoint(marks, x, y));
+      }
+    }
+
+    function addGap(y) {
+      svg.append("rect").attr("x", 0).attr("y", y).attr("width", 900).attr("height", GAP).attr("fill", "#e0e0e0");
+      svg.append("line").attr("x1", 0).attr("y1", y).attr("x2", 900).attr("y2", y)
+        .attr("stroke", "#999").attr("stroke-width", 3);
+      svg.append("line").attr("x1", 0).attr("y1", y + GAP).attr("x2", 900).attr("y2", y + GAP)
+        .attr("stroke", "#999").attr("stroke-width", 3);
+    }
+
+    // ═══════════════════════════════════════════════════════════
+    // HOUSE 1 (top) – simple house + sun, clouds, trees
+    // ═══════════════════════════════════════════════════════════
+    const top = svg.append("g").attr("id", "house1");
+
+    top.append("rect").attr("x", 0).attr("y", 0).attr("width", 900).attr("height", TOP_H)
+      .attr("fill", "#fafafa");
+
+    top.append("rect").attr("x", 0).attr("y", 0).attr("width", 900).attr("height", 260)
+      .attr("fill", "#87ceeb");
+    top.append("rect").attr("x", 0).attr("y", 260).attr("width", 900).attr("height", TOP_H - 260)
+      .attr("fill", "#6abf45");
+
+    top.append("circle")
+      .attr("cx", 750).attr("cy", 55).attr("r", 35)
+      .attr("fill", "yellow").attr("stroke", "orange").attr("stroke-width", 2);
+
+    drawCloud(top, 140, 45);
+    drawCloud(top, 480, 35);
+    drawCloud(top, 650, 55);
+
+    const TOP_GROUND = 320;
+    drawTree(top, 90, TOP_GROUND);
+    drawTree(top, 780, TOP_GROUND);
+
+    // Road – house 1 only (connects to door)
+    top.append("path")
+      .attr("d", "M406,280 L434,280 L452,385 L388,385 Z")
+      .attr("fill", "#d5b882")
+      .attr("stroke", "#b8975a")
+      .attr("stroke-width", 1.5);
+
+    const simple = top.append("g").attr("transform", "translate(360, 155)");
+    simple.append("rect").attr("x", 0).attr("y", 50).attr("width", 120).attr("height", 75)
+      .attr("fill", "#f4d9a0").attr("stroke", "#c8a060").attr("stroke-width", 2);
+    simple.append("path").attr("d", "M-8,55 L60,5 L128,55 Z").attr("fill", "#c0392b");
+    simple.append("rect").attr("x", 48).attr("y", 88).attr("width", 24).attr("height", 37).attr("fill", "#7d4e1f");
+    simple.append("rect").attr("x", 18).attr("y", 68).attr("width", 26).attr("height", 22)
+      .attr("fill", "#aed6f1").attr("stroke", "#555").attr("stroke-width", 1);
+    simple.append("rect").attr("x", 76).attr("y", 68).attr("width", 26).attr("height", 22)
+      .attr("fill", "#aed6f1").attr("stroke", "#555").attr("stroke-width", 1);
+
+    addGap(TOP_H);
+
+    // HOUSE 2 – full garden (same as house 3, no coord labels)
+    const scene2 = svg.append("g").attr("id", "house2").attr("transform", `translate(0, ${TOP_H + GAP})`);
+    drawGarden(scene2, false);
+
+    addGap(TOP_H + GAP + SCENE_H);
+
+    // HOUSE 3 – same garden + (x,y) on each shape (Figure 1.11 style)
+    const scene3 = svg.append("g").attr("id", "house3")
+      .attr("transform", `translate(0, ${TOP_H + GAP + SCENE_H + GAP})`);
+    drawGarden(scene3, true);
+
+    }
+  </script>
+</body>
+</html>

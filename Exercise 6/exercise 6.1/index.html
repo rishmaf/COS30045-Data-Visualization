@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exercise 6.1 — Histogram &amp; scatter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main>
+    <header class="page-header">
+      <h1>Exercise 6 — Interactivity</h1>
+    </header>
+
+    <section class="filters-card">
+      <h2>Filters</h2>
+      <div class="filters">
+        <label>
+          Screen technology
+          <select id="filter-tech">
+            <option value="all">All</option>
+            <option value="LCD">LCD</option>
+            <option value="LED">LED</option>
+            <option value="OLED">OLED</option>
+          </select>
+        </label>
+        <label>
+          Min screen size (inches)
+          <input type="range" id="filter-size-min" min="16" max="100" value="16" step="1" />
+          <span id="filter-size-min-val">16</span>
+        </label>
+        <label>
+          Max screen size (inches)
+          <input type="range" id="filter-size-max" min="16" max="114" value="114" step="1" />
+          <span id="filter-size-max-val">114</span>
+        </label>
+      </div>
+      <p class="filter-summary" id="filter-summary"></p>
+    </section>
+
+    <section class="chart-card">
+      <div class="chart-card__head">
+        <h2>Energy consumption histogram</h2>
+      </div>
+      <div id="histogram"></div>
+    </section>
+
+    <section class="chart-card">
+      <div class="chart-card__head">
+        <h2>Screen size vs energy scatter plot</h2>
+      </div>
+      <div id="scatter"></div>
+      <div class="scatter-legend" id="scatter-legend"></div>
+    </section>
+  </main>
+
+  <div id="chart-tooltip" class="chart-tooltip" role="tooltip"></div>
+
+  <script src="embeddedData.js"></script>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <script src="shared.js"></script>
+  <script src="histogram.js"></script>
+  <script src="scatter.js"></script>
+  <script src="dataLoad.js"></script>
+
+</body>
+</html>

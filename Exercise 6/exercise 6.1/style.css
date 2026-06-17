@@ -1,0 +1,160 @@
+:root {
+  --bg: #eef1f4;
+  --card: #ffffff;
+  --text: #1a2332;
+  --muted: #5c6b7a;
+  --border: #dde3ea;
+  --primary: #75485e;
+  --shadow: 0 8px 28px rgba(26, 35, 50, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, sans-serif;
+  margin: 0;
+  padding: 2rem 1.25rem 3rem;
+  background: var(--bg);
+  color: var(--text);
+}
+
+main {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.page-header h1 {
+  font-size: 1.6rem;
+  margin: 0 0 0.35rem;
+}
+
+.page-header p {
+  margin: 0 0 1.5rem;
+  color: var(--muted);
+}
+
+.filters-card,
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  box-shadow: var(--shadow);
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.filters-card h2,
+.chart-card__head h2 {
+  font-size: 1.05rem;
+  margin: 0 0 0.75rem;
+}
+
+.chart-card__head p {
+  margin: -0.5rem 0 1rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2rem;
+  align-items: flex-end;
+}
+
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.filters select {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.9rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  min-width: 120px;
+}
+
+.filters input[type="range"] {
+  width: 160px;
+}
+
+.filter-summary {
+  margin: 0.75rem 0 0;
+  font-size: 0.85rem;
+  color: var(--primary);
+  font-weight: 600;
+}
+
+#histogram svg,
+#scatter svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.scatter-legend {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.legend-swatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.axis-x path,
+.axis-x line,
+.axis-y path,
+.axis-y line {
+  stroke: var(--border);
+}
+
+.axis-x text,
+.axis-y text {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.chart-tooltip {
+  position: fixed;
+  pointer-events: none;
+  z-index: 1000;
+  padding: 0.55rem 0.7rem;
+  background: var(--text);
+  color: #fff;
+  font-size: 0.78rem;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.18);
+  opacity: 0;
+  transition: opacity 0.12s ease;
+  max-width: 260px;
+  line-height: 1.45;
+}
+
+.chart-tooltip.visible {
+  opacity: 1;
+}
+
+.chart-tooltip strong {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 0.15rem;
+}

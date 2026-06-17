@@ -1,0 +1,472 @@
+/* ═══════════════════════════════════════════════════════════════
+   Exercise 4–6 — unified lab design (layout only; chart JS unchanged)
+   Chart frame: 1000 × 480px on every exercise
+   ═══════════════════════════════════════════════════════════════ */
+
+body[data-page="ex4"] main,
+body[data-page="ex5"] main,
+body[data-page="ex6"] main {
+    flex: 1;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 24px 20px 48px;
+}
+
+body[data-page="ex4"],
+body[data-page="ex5"],
+body[data-page="ex6"] {
+    padding: 0 0 var(--site-footer-height) !important;
+    scroll-padding-top: 7.5rem;
+}
+
+body[data-page="ex5"] main,
+body[data-page="ex6"] main {
+    max-width: 1180px;
+}
+
+body[data-page="ex4"] main,
+body[data-page="ex5"] main,
+body[data-page="ex6"] main {
+    position: relative;
+    z-index: 1;
+    isolation: isolate;
+}
+
+.exercise-labs-main {
+    --ex-chart-w: 1000;
+    --ex-chart-h: 480;
+    --ex-chart-max-width: 1000px;
+    --ex-chart-frame-height: 480px;
+    --ex-chart-aspect: 1000 / 480;
+    --ex-card-radius: 18px;
+    --ex-gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--ex-gap);
+}
+
+/* Same page scale on ex 4, 5, 6 */
+body[data-page="ex4"],
+body[data-page="ex5"],
+body[data-page="ex6"] {
+    font-size: 16px;
+}
+
+body[data-page="ex4"] main,
+body[data-page="ex5"] main,
+body[data-page="ex6"] main {
+    max-width: 1180px;
+    padding: 24px 20px 48px;
+}
+
+/* ── Hero (weeks 4–6) ── */
+.exercise-lab-hero {
+    position: relative;
+    padding: 22px 26px 20px 30px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--primary);
+    border-radius: var(--ex-card-radius);
+    box-shadow: var(--shadow-soft);
+}
+
+.exercise-lab-hero .eyebrow {
+    margin: 0 0 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--primary);
+}
+
+.exercise-lab-hero h1 {
+    margin: 0 0 8px;
+    font-size: clamp(1.25rem, 2.5vw, 1.7rem);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: #1e3a8a;
+    line-height: 1.25;
+}
+
+.exercise-lab-hero .hero-lead {
+    margin: 0;
+    max-width: 56ch;
+    font-size: 0.92rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+.exercise-lab-hero .hero-chip-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.exercise-lab-hero .hero-chip {
+    padding: 4px 11px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: #1e40af;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+}
+
+/* ── Shared chart stack (ex 4 panels, 5, 6) ── */
+.exercise-charts-stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ex-gap);
+}
+
+/* ── Chart card (ex 4 lab section + ex 5/6 cards) ── */
+.exercise-chart-card,
+.exercise-labs-main .chart-card,
+.exercise-lab-section {
+    margin: 0;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--ex-card-radius);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+}
+
+.exercise-chart-card__head,
+.exercise-labs-main .chart-card__head,
+.exercise-lab-section__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px 14px;
+    padding: 16px 20px;
+    background: #f8fafc;
+    border-bottom: 1px solid #e8eef7;
+}
+
+.exercise-chart-card__head h2,
+.exercise-labs-main .chart-card__head h2,
+.exercise-lab-section__head h2,
+.exercise-lab-section h2 {
+    flex: 1 1 180px;
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #1e3a8a;
+    line-height: 1.35;
+}
+
+.exercise-chart-card__step,
+.exercise-labs-main .chart-card__step,
+.exercise-lab-section .lab-badge {
+    flex-shrink: 0;
+    font-size: 0.65rem;
+    font-weight: 800;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-radius: 6px;
+    padding: 5px 9px;
+}
+
+.exercise-lab-section .lab-badge {
+    color: var(--primary);
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 999px;
+    padding: 4px 10px;
+    letter-spacing: 0.06em;
+}
+
+.exercise-chart-card__body,
+.exercise-labs-main .chart-card__body,
+.exercise-lab-section__body {
+    padding: 16px 18px 18px;
+}
+
+.exercise-lab-section__body {
+    padding-top: 0;
+}
+
+.exercise-lab-section__head + .ex4-scene-picker,
+.exercise-lab-section__head + nav {
+    margin: 0 18px 12px;
+}
+
+.exercise-lab-section p.lab-note {
+    margin: 0 18px 16px;
+    padding: 14px 16px;
+    font-size: 0.88rem;
+    color: #475569;
+    background: #f8fafc;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    line-height: 1.5;
+}
+
+/* ── Uniform chart frame: 1000 × 480 (same box on every page) ── */
+.ex-chart-frame,
+.exercise-labs-main .chart-panel.ex-chart-frame,
+.exercise-labs-main .lab-chart.ex-chart-frame,
+#lab-4-1 .ex4-house-canvas.ex-chart-frame {
+    box-sizing: border-box;
+    width: 100% !important;
+    max-width: var(--ex-chart-max-width) !important;
+    aspect-ratio: var(--ex-chart-aspect) !important;
+    height: auto !important;
+    min-height: 0 !important;
+    margin: 0 auto !important;
+    padding: 8px !important;
+    background: #f1f5f9 !important;
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+
+/* Override Exercise 5/6 stylesheets (they set svg { height: auto }) */
+body[data-page="ex4"] .ex-chart-frame > svg,
+body[data-page="ex5"] .ex-chart-frame > svg,
+body[data-page="ex6"] .ex-chart-frame > svg,
+body[data-page="ex5"] #line-chart > svg,
+body[data-page="ex5"] #bars > svg,
+body[data-page="ex5"] #donut > svg,
+body[data-page="ex5"] #scatter-plot > svg,
+body[data-page="ex6"] #histogram > svg,
+body[data-page="ex6"] #line-chart > svg,
+body[data-page="ex4"] .lab-chart.ex-chart-frame > svg,
+#lab-4-1 .ex4-house-canvas.ex-chart-frame > svg {
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: block !important;
+}
+
+#lab-4-1 .ex4-house-canvas.ex-chart-frame {
+    overflow: visible !important;
+}
+
+#lab-4-1 .ex4-house-canvas.ex-chart-frame > svg {
+    border-radius: 8px;
+}
+
+/* ── Exercise 4 toolbar & panels ── */
+.exercise-lab-toolbar {
+    padding: 12px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    box-shadow: var(--shadow-soft);
+}
+
+.ex4-lab-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+}
+
+.ex4-lab-picker button.exercise-subnav-link {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #1e40af;
+    background: #f8fafc;
+    border: 1px solid #dbeafe;
+    border-radius: 999px;
+    padding: 8px 14px;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.ex4-lab-picker button.exercise-subnav-link:hover {
+    background: #eff6ff;
+    border-color: #93c5fd;
+}
+
+.ex4-lab-picker button.exercise-subnav-link.is-active {
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-color: var(--primary-dark);
+}
+
+.ex4-lab-panel {
+    display: none;
+}
+
+.ex4-lab-panel.is-active {
+    display: block;
+    animation: exCardIn 0.25s ease;
+}
+
+@keyframes exCardIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#lab-4-1 .ex4-scene-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #e8eef7;
+    border-radius: 10px;
+}
+
+#lab-4-1 .ex4-scene-picker button.exercise-subnav-link {
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #1e40af;
+    background: #fff;
+    border: 1px solid #dbeafe;
+    border-radius: 999px;
+    padding: 6px 12px;
+}
+
+#lab-4-1 .ex4-scene-picker button.exercise-subnav-link.is-active {
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    border-color: var(--primary-dark);
+}
+
+/* ── Exercise 6 filters (inside card body) ── */
+.exercise-labs-main .chart-filters-wrap {
+    margin-bottom: 10px;
+    padding: 10px 12px;
+    background: #f8fafc;
+    border: 1px solid #e8eef7;
+    border-radius: 10px;
+}
+
+.exercise-labs-main .chart-filters-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.exercise-labs-main .filter-summary {
+    margin: 0 0 10px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.exercise-labs-main .legend-container,
+.exercise-labs-main .scatter-legend {
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+.exercise-labs-main .scatter-status {
+    flex: 1 1 100%;
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* Tooltip is outside <main> — below sticky header (z-index 30) */
+#chart-tooltip.chart-tooltip {
+    position: fixed;
+    pointer-events: none;
+    z-index: 20;
+    padding: 0.55rem 0.75rem;
+    background: #1a2332;
+    color: #fff;
+    font-size: 0.8rem;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.22);
+    opacity: 0;
+    transition: opacity 0.12s ease;
+    max-width: 240px;
+    line-height: 1.45;
+}
+
+#chart-tooltip.chart-tooltip.visible {
+    opacity: 1 !important;
+}
+
+#chart-tooltip.chart-tooltip strong {
+    display: block;
+    font-size: 0.88rem;
+    margin-bottom: 0.15rem;
+}
+
+.ex-chart-frame .bar-hit {
+    cursor: pointer;
+}
+
+.ex-chart-frame .bar-group text {
+    pointer-events: none;
+}
+
+.ex-chart-frame svg {
+    pointer-events: all;
+}
+
+/* Legacy aliases */
+.ex4-lab-panels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ex-gap);
+}
+
+.exercise-labs-main .charts-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ex-gap);
+}
+
+.exercise-lab-section {
+    padding: 0;
+}
+
+.exercise-lab-section__head {
+    margin-bottom: 0;
+}
+
+.exercise-lab-section .ex-chart-frame,
+.exercise-lab-section .lab-chart {
+    margin: 0 18px 18px;
+    width: calc(100% - 36px);
+}
+
+@media (max-width: 640px) {
+    body[data-page="ex4"] main,
+    body[data-page="ex5"] main,
+    body[data-page="ex6"] main {
+        padding: 16px 12px 36px;
+    }
+
+    .exercise-lab-hero {
+        padding: 18px 16px 16px 20px;
+    }
+
+    .exercise-chart-card__body,
+    .exercise-labs-main .chart-card__body {
+        padding: 12px;
+    }
+
+    .exercise-lab-section .ex-chart-frame,
+    .exercise-lab-section .lab-chart {
+        margin: 0 12px 12px;
+        width: calc(100% - 24px);
+    }
+}
